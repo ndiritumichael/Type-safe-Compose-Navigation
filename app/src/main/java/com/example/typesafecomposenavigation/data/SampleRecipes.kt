@@ -5,12 +5,13 @@ import com.example.typesafecomposenavigation.model.Ingredient
 import com.example.typesafecomposenavigation.model.RecipeModel
 import com.example.typesafecomposenavigation.model.RecipeType
 
-val SAMPLERECIPES: List<RecipeModel>
-    get() = lunchRecipes + breakfastRecipes + snackRecipes + supperRecipes
 
 
 
-private val lunchRecipes = listOf(
+
+
+
+internal val lunchRecipes = listOf(
     RecipeModel(
         id = 1,
         name = "Nyama Choma (Grilled Meat)",
@@ -30,9 +31,67 @@ private val lunchRecipes = listOf(
         ),
         servings = 4
     ),
+    RecipeModel(
+        id = 27,
+        name = "Matoke Stew",
+        mealType = RecipeType.Lunch,
+        difficultyLevel = DifficultyLevel.Advanced,
+        ingredients = listOf(
+            Ingredient("Matoke (green bananas)", "6 peeled and sliced"),
+            Ingredient("Beef stew meat", "300 grams"),
+            Ingredient("Onion", "1 medium, chopped"),
+            Ingredient("Tomatoes", "2 medium, diced"),
+            Ingredient("Garlic", "2 cloves, minced"),
+            Ingredient("Ginger", "1 teaspoon, grated"),
+            Ingredient("Vegetable oil", "2 tablespoons"),
+            Ingredient("Curry powder", "1 teaspoon"),
+            Ingredient("Turmeric powder", "0.5 teaspoon"),
+            Ingredient("Salt", "1 teaspoon"),
+            Ingredient("Fresh cilantro", "2 tablespoons, chopped, for garnish")
+        ),
+        steps = listOf(
+            "In a large pot, heat vegetable oil and brown the beef stew meat.",
+            "Add chopped onions and sauté until translucent.",
+            "Stir in minced garlic and grated ginger, cook for an additional minute.",
+            "Add diced tomatoes and cook until they break down into a thick sauce.",
+            "Sprinkle curry powder, turmeric powder, and salt. Mix well.",
+            "Add sliced matoke (green bananas) and stir to coat with the sauce.",
+            "Pour enough water to cover the matoke and bring the stew to a simmer.",
+            "Cover the pot and simmer on low heat for 20-25 minutes or until matoke is tender.",
+            "Garnish with chopped cilantro before serving."
+        ),
+        servings = 6
+    ),
+    RecipeModel(
+        id = 30,
+        name = "Mashed Potatoes and Meat",
+        mealType = RecipeType.Lunch,
+        difficultyLevel = DifficultyLevel.Intermediate,
+        ingredients = listOf(
+            Ingredient("Potatoes", "5 large, peeled and diced"),
+            Ingredient("Beef stew meat", "600g, cooked and shredded"),
+            Ingredient("Milk", "1 cup"),
+            Ingredient("Butter", "4 tablespoons"),
+            Ingredient("Salt", "1.5 teaspoons"),
+            Ingredient("Black pepper", "1/2 teaspoon"),
+            Ingredient("Garlic powder", "1/2 teaspoon"),
+            Ingredient("Cheddar cheese", "1 cup, shredded"),
+            Ingredient("Green onions", "2 tablespoons, chopped, for garnish")
+        ),
+        steps = listOf(
+            "Boil potatoes until fork-tender. Drain and mash with butter and milk until smooth.",
+            "Season mashed potatoes with salt, black pepper, and garlic powder. Mix well.",
+            "In a separate bowl, mix shredded beef with a portion of mashed potatoes.",
+            "Layer mashed potatoes in a baking dish, top with the meat-potato mixture, and sprinkle cheddar cheese on top.",
+            "Bake in the oven until the cheese is melted and bubbly.",
+            "Garnish with chopped green onions and serve hot.",
+            "Enjoy your Mashed Potatoes and Meat!"
+        ),
+        servings = 8
+    ),
 
     RecipeModel(
-        id = 25,
+        id = 2,
         name = "Sukuma Wiki and Ugali",
         mealType = RecipeType.Lunch,
         difficultyLevel = DifficultyLevel.Beginner,
@@ -51,30 +110,9 @@ private val lunchRecipes = listOf(
         ),
         servings = 4
     ),
+
     RecipeModel(
-        id = 63,
-        name = "Fish Stew with Coconut Rice",
-        mealType = RecipeType.Supper,
-        difficultyLevel = DifficultyLevel.Advanced,
-        ingredients = listOf(
-            Ingredient("Fish fillets", "600g"),
-            Ingredient("Coconut milk", "400ml"),
-            Ingredient("Tomato paste", "2 tbsp"),
-            Ingredient("Onions", "2 medium, chopped"),
-            Ingredient("Garlic", "3 cloves, minced"),
-            Ingredient("Ginger", "1 tsp, minced"),
-            Ingredient("Vegetable oil", "3 tbsp")
-        ),
-        steps = listOf(
-            "Sauté onions, garlic, and ginger in vegetable oil until fragrant.",
-            "Add tomato paste and cook for a few minutes.",
-            "Add coconut milk and fish fillets. Simmer until fish is cooked. Serve with coconut rice."
-        ),
-        servings = 4
-    ),
-    RecipeModel(
-        id = 18,
-        name = "Ugali with Liver Stew",
+        id = 4       , name = "Ugali with Liver Stew",
         mealType = RecipeType.Lunch,
         difficultyLevel = DifficultyLevel.Intermediate,
         ingredients = listOf(
@@ -101,14 +139,16 @@ private val lunchRecipes = listOf(
         ),
         servings = 5
     )
+    ,
+
 )
 
 
 
 
-private val breakfastRecipes = listOf(
+internal val breakfastRecipes = listOf(
     RecipeModel(
-        id = 21,
+        id = 29,
         name = "Kenyan Tea and Mandazi",
         mealType = RecipeType.Breakfast,
         difficultyLevel = DifficultyLevel.Beginner,
@@ -218,11 +258,11 @@ private val breakfastRecipes = listOf(
 
 
 
-private val supperRecipes = listOf(
+internal val supperRecipes = listOf(
     RecipeModel(
         id = 20,
         name = "Ugali with Sukuma Wiki and Nyama Choma",
-        mealType = RecipeType.Lunch,
+        mealType = RecipeType.Supper,
         difficultyLevel = DifficultyLevel.Advanced,
         ingredients = listOf(
             Ingredient("Maize flour", "2 cups"),
@@ -240,7 +280,7 @@ private val supperRecipes = listOf(
     RecipeModel(
         id = 21,
         name = "Coconut Rice and Beans",
-        mealType = RecipeType.Lunch,
+        mealType = RecipeType.Supper,
         difficultyLevel = DifficultyLevel.Intermediate,
         ingredients = listOf(
             Ingredient("Rice", "2 cups"),
@@ -265,37 +305,7 @@ private val supperRecipes = listOf(
         ),
         servings = 4
     ),
-    RecipeModel(
-        id = 27,
-        name = "Matoke Stew",
-        mealType = RecipeType.Lunch,
-        difficultyLevel = DifficultyLevel.Advanced,
-        ingredients = listOf(
-            Ingredient("Matoke (green bananas)", "6 peeled and sliced"),
-            Ingredient("Beef stew meat", "300 grams"),
-            Ingredient("Onion", "1 medium, chopped"),
-            Ingredient("Tomatoes", "2 medium, diced"),
-            Ingredient("Garlic", "2 cloves, minced"),
-            Ingredient("Ginger", "1 teaspoon, grated"),
-            Ingredient("Vegetable oil", "2 tablespoons"),
-            Ingredient("Curry powder", "1 teaspoon"),
-            Ingredient("Turmeric powder", "0.5 teaspoon"),
-            Ingredient("Salt", "1 teaspoon"),
-            Ingredient("Fresh cilantro", "2 tablespoons, chopped, for garnish")
-        ),
-        steps = listOf(
-            "In a large pot, heat vegetable oil and brown the beef stew meat.",
-            "Add chopped onions and sauté until translucent.",
-            "Stir in minced garlic and grated ginger, cook for an additional minute.",
-            "Add diced tomatoes and cook until they break down into a thick sauce.",
-            "Sprinkle curry powder, turmeric powder, and salt. Mix well.",
-            "Add sliced matoke (green bananas) and stir to coat with the sauce.",
-            "Pour enough water to cover the matoke and bring the stew to a simmer.",
-            "Cover the pot and simmer on low heat for 20-25 minutes or until matoke is tender.",
-            "Garnish with chopped cilantro before serving."
-        ),
-        servings = 6
-    ),
+
 
     RecipeModel(
         id = 36,
@@ -348,39 +358,34 @@ private val supperRecipes = listOf(
         ),
         servings = 6
     ),
+
     RecipeModel(
-        id = 30,
-        name = "Mashed Potatoes and Meat",
+        id = 3,
+        name = "Fish Stew with Coconut Rice",
         mealType = RecipeType.Supper,
-        difficultyLevel = DifficultyLevel.Intermediate,
+        difficultyLevel = DifficultyLevel.Advanced,
         ingredients = listOf(
-            Ingredient("Potatoes", "5 large, peeled and diced"),
-            Ingredient("Beef stew meat", "600g, cooked and shredded"),
-            Ingredient("Milk", "1 cup"),
-            Ingredient("Butter", "4 tablespoons"),
-            Ingredient("Salt", "1.5 teaspoons"),
-            Ingredient("Black pepper", "1/2 teaspoon"),
-            Ingredient("Garlic powder", "1/2 teaspoon"),
-            Ingredient("Cheddar cheese", "1 cup, shredded"),
-            Ingredient("Green onions", "2 tablespoons, chopped, for garnish")
+            Ingredient("Fish fillets", "600g"),
+            Ingredient("Coconut milk", "400ml"),
+            Ingredient("Tomato paste", "2 tbsp"),
+            Ingredient("Onions", "2 medium, chopped"),
+            Ingredient("Garlic", "3 cloves, minced"),
+            Ingredient("Ginger", "1 tsp, minced"),
+            Ingredient("Vegetable oil", "3 tbsp")
         ),
         steps = listOf(
-            "Boil potatoes until fork-tender. Drain and mash with butter and milk until smooth.",
-            "Season mashed potatoes with salt, black pepper, and garlic powder. Mix well.",
-            "In a separate bowl, mix shredded beef with a portion of mashed potatoes.",
-            "Layer mashed potatoes in a baking dish, top with the meat-potato mixture, and sprinkle cheddar cheese on top.",
-            "Bake in the oven until the cheese is melted and bubbly.",
-            "Garnish with chopped green onions and serve hot.",
-            "Enjoy your Mashed Potatoes and Meat!"
+            "Sauté onions, garlic, and ginger in vegetable oil until fragrant.",
+            "Add tomato paste and cook for a few minutes.",
+            "Add coconut milk and fish fillets. Simmer until fish is cooked. Serve with coconut rice."
         ),
-        servings = 8
-    )
+        servings = 4
+    ),
 
 )
 
 
 
-private val snackRecipes = listOf(
+internal val snackRecipes = listOf(
     RecipeModel(
         id = 57,
         name = "Boiled Eggs",
@@ -447,7 +452,73 @@ private val snackRecipes = listOf(
             "Enjoy your Spiced Boiled Maize as a delicious and healthy snack!"
         ),
         servings = 4
+    ),
+    RecipeModel(
+        id = 11,
+        name = "Fruit Salad with Yogurt Dip",
+        mealType = RecipeType.Snack,
+        difficultyLevel = DifficultyLevel.Beginner,
+        ingredients = listOf(
+            Ingredient("Mixed fresh fruits", "1.0 cup"),
+            Ingredient("Yogurt", "0.5 cup"),
+            Ingredient("Honey", "1.0 tablespoon"),
+            Ingredient("Lemon juice", "0.5 tablespoon"),
+            Ingredient("Mint leaves", "2.0 tablespoons, chopped, for garnish")
+        ),
+        steps = listOf(
+            "Wash and cut the fresh fruits into bite-sized pieces.",
+            "In a small bowl, whisk together the yogurt, honey, and lemon juice.",
+            "Transfer the fruit salad to a serving bowl and drizzle with the yogurt dip.",
+            "Garnish with chopped mint leaves and serve chilled."
+        ),
+        servings = 2
+    ),
+    RecipeModel(
+        id = 12,
+        name = "Roasted Chickpeas",
+        mealType = RecipeType.Snack,
+        difficultyLevel = DifficultyLevel.Beginner,
+        ingredients = listOf(
+            Ingredient("Chickpeas", "1.0 cup, dried"),
+            Ingredient("Olive oil", "2.0 tablespoons"),
+            Ingredient("Salt", "0.5 teaspoon"),
+            Ingredient("Paprika", "0.5 teaspoon"),
+            Ingredient("Garlic powder", "0.25 teaspoon")
+        ),
+        steps = listOf(
+            "Preheat the oven to 400 degrees Fahrenheit (200 degrees Celsius).",
+            "Rinse the chickpeas and drain well.",
+            "In a large bowl, combine the chickpeas, olive oil, salt, paprika, and garlic powder.",
+            "Toss to coat the chickpeas evenly.",
+            "Spread the chickpeas in a single layer on a baking sheet.",
+            "Roast in the preheated oven for 20-25 minutes, or until golden brown and crispy.",
+            "Let cool slightly before serving."
+        ),
+        servings = 4
+    ),
+    RecipeModel(
+        id = 13,
+        name = "Peanut Butter and Banana Smoothie",
+        mealType = RecipeType.Snack,
+        difficultyLevel = DifficultyLevel.Beginner,
+        ingredients = listOf(
+            Ingredient("Frozen banana", "1.0"),
+            Ingredient("Peanut butter", "2.0 tablespoons"),
+            Ingredient("Milk", "1.0 cup"),
+            Ingredient("Honey", "1.0 tablespoon"),
+            Ingredient("Vanilla extract", "0.5 teaspoon")
+        ),
+        steps = listOf(
+            "In a blender, combine the frozen banana, peanut butter, milk, honey, and vanilla extract.",
+            "Blend until smooth and creamy.",
+            "Pour into a glass and enjoy!"
+        ),
+        servings = 1
     )
+
+
 )
+
+val SAMPLERECIPES: List<RecipeModel> = lunchRecipes + breakfastRecipes + snackRecipes + supperRecipes
 
 

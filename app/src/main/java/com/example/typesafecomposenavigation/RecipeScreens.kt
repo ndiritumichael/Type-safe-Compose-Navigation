@@ -1,17 +1,26 @@
 package com.example.typesafecomposenavigation
 
+import android.os.Build
+import android.os.Bundle
+import android.os.Parcelable
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Cookie
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.outlined.Cookie
+import androidx.compose.material.icons.filled.GridView
+import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.GridView
+import androidx.compose.material.icons.outlined.Restaurant
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.navigation.NavType
+import com.example.typesafecomposenavigation.model.RecipeType
+import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 @Serializable
 sealed class RecipeScreens {
+
     @Serializable
     data object Recipes : RecipeScreens()
 
@@ -19,10 +28,13 @@ sealed class RecipeScreens {
     data object Favorites : RecipeScreens()
 
     @Serializable
-    data class RecipeDetails(val name: String) : RecipeScreens()
+    data class RecipeDetails(val recipeId: Int) : RecipeScreens()
 
     @Serializable
-    data object Profile : RecipeScreens()
+    data object Category : RecipeScreens()
+
+    @Serializable
+    data class CategoryRecipes(val type: RecipeType) : RecipeScreens()
 
 }
 
@@ -36,8 +48,8 @@ enum class BottomNavigationItems(
 
     Recipes(
         label = "Recipes",
-        selectedIcon = Icons.Filled.Cookie,
-        unselectedIcon = Icons.Outlined.Cookie,
+        selectedIcon = Icons.Filled.Restaurant,
+        unselectedIcon = Icons.Outlined.Restaurant,
         route = RecipeScreens.Recipes
     ),
     Favorites(
@@ -46,10 +58,36 @@ enum class BottomNavigationItems(
         unselectedIcon = Icons.Outlined.Favorite,
         route = RecipeScreens.Favorites
     ),
-    Profile(
-        label = "Profile",
-        selectedIcon = Icons.Filled.Person,
-        unselectedIcon = Icons.Outlined.Person,
-        route = RecipeScreens.Profile
+    Category(
+        label = "Category",
+        selectedIcon = Icons.Filled.GridView,
+        unselectedIcon = Icons.Outlined.GridView,
+        route = RecipeScreens.Category
     )
+}
+
+val CategoryNavigationType = object : NavType<RecipeType>(isNullableAllowed = false) {
+    override fun get(bundle: Bundle, key: String): RecipeType? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            bundle.getParcelable(key, RecipeType::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            bundle.getParcelable(key)
+        }
+
+    }
+
+    override fun parseValue(value: String): RecipeType {
+        return Json.decodeFromString<RecipeType>(value)
+    }
+
+    override fun serializeAsValue(value: RecipeType): String {
+        return Json.encodeToString(value)
+    }
+
+    override fun put(bundle: Bundle, key: String, value: RecipeType) {
+        bundle.putParcelable(key, value)
+    }
+
+
 }

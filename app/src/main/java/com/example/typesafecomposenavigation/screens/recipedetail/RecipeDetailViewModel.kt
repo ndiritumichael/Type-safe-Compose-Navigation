@@ -3,7 +3,7 @@ package com.example.typesafecomposenavigation.screens.recipedetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.navigation.toRoute
-import com.example.typesafecomposenavigation.ui.navigation.RecipeScreens
+import com.example.typesafecomposenavigation.ui.navigation.RecipeDestinations
 import com.example.typesafecomposenavigation.data.RecipeRepository
 import com.example.typesafecomposenavigation.model.RecipeModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +15,7 @@ class RecipeDetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel() {
     /**
      *   You can also access the arguments directly from the [SavedStateHandle].
      */
-    private val detailRoute: RecipeScreens.RecipeDetails = savedStateHandle.toRoute()
+    private val detailRoute: RecipeDestinations.RecipeDetails = savedStateHandle.toRoute()
 
 
     private val _recipeDetails = MutableStateFlow<RecipeDetailState>(RecipeDetailState.Idle)

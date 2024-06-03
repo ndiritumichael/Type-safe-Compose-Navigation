@@ -19,7 +19,7 @@ import kotlin.reflect.typeOf
 @Composable
 fun AppNavigation(
     navController: NavHostController,
-    startDestination: RecipeScreens = RecipeScreens.Recipes,
+    startDestination: RecipeDestinations = RecipeDestinations.Recipes,
     modifier: Modifier
 ) {
 
@@ -30,11 +30,11 @@ fun AppNavigation(
     ) {
 
 
-        composable<RecipeScreens.Recipes> {
+        composable<RecipeDestinations.Recipes> {
 
 
             AllRecipesScreen(RecipeRepository.getAllRecipes()) { recipeId ->
-                navController.navigate(RecipeScreens.RecipeDetails(recipeId)) {
+                navController.navigate(RecipeDestinations.RecipeDetails(recipeId)) {
                     launchSingleTop = true
                 }
             }
@@ -42,8 +42,8 @@ fun AppNavigation(
         }
 
 
-        composable<RecipeScreens.RecipeDetails> { backStackEntry ->
-            val recipeDetails: RecipeScreens.RecipeDetails = backStackEntry.toRoute()
+        composable<RecipeDestinations.RecipeDetails> { backStackEntry ->
+            val recipeDetails: RecipeDestinations.RecipeDetails = backStackEntry.toRoute()
 
             RecipeDetailPage(recipeDetails.recipeId) {
                 navController.navigateUp()
@@ -51,37 +51,37 @@ fun AppNavigation(
 
         }
 
-        composable<RecipeScreens.Favorites> {
+        composable<RecipeDestinations.Favorites> {
 
 
             FavoriteRecipesScreen(onRecipeClicked = { recipeId ->
-                navController.navigate(RecipeScreens.RecipeDetails(recipeId)) {
+                navController.navigate(RecipeDestinations.RecipeDetails(recipeId)) {
                     launchSingleTop = true
                 }
             }) {
-                navController.navigate(RecipeScreens.Recipes)
+                navController.navigate(RecipeDestinations.Recipes)
             }
 
         }
 
-        composable<RecipeScreens.Category> {
+        composable<RecipeDestinations.Category> {
 
             CategoryScreen {
-                navController.navigate(RecipeScreens.CategoryRecipes(it))
+                navController.navigate(RecipeDestinations.CategoryRecipes(it))
             }
 
         }
-        composable<RecipeScreens.CategoryRecipes>(
+        composable<RecipeDestinations.CategoryRecipes>(
             typeMap = mapOf(typeOf<RecipeType>() to CategoryNavigationType)
         ) { backStackEntry ->
 
-            val category: RecipeScreens.CategoryRecipes =
-                backStackEntry.toRoute<RecipeScreens.CategoryRecipes>()
+            val category: RecipeDestinations.CategoryRecipes =
+                backStackEntry.toRoute<RecipeDestinations.CategoryRecipes>()
 
             CategoryRecipesScreen(
                 category.type,
                 onBackPressed = { navController.navigateUp() }) { recipeId ->
-                navController.navigate(RecipeScreens.RecipeDetails(recipeId))
+                navController.navigate(RecipeDestinations.RecipeDetails(recipeId))
             }
 
 

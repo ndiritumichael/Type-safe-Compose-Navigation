@@ -17,30 +17,30 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 @Serializable
-sealed class RecipeScreens {
+sealed class RecipeDestinations {
 
     @Serializable
-    data object Recipes : RecipeScreens()
+    data object Recipes : RecipeDestinations()
 
     @Serializable
-    data object Favorites : RecipeScreens()
+    data object Favorites : RecipeDestinations()
 
     @Serializable
-    data class RecipeDetails(val recipeId: Int) : RecipeScreens()
+    data class RecipeDetails(val recipeId: Int) : RecipeDestinations()
 
     @Serializable
-    data object Category : RecipeScreens()
+    data object Category : RecipeDestinations()
 
     @Serializable
-    data class CategoryRecipes(val type: RecipeType) : RecipeScreens()
+    data class CategoryRecipes(val type: RecipeType) : RecipeDestinations()
 
 }
 
-enum class BottomNavigationItems(
+enum class TopLevelDestinations(
     val label: String,
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
-    val route: RecipeScreens
+    val route: RecipeDestinations
 ) {
 
 
@@ -48,19 +48,19 @@ enum class BottomNavigationItems(
         label = "Recipes",
         selectedIcon = Icons.Filled.Restaurant,
         unselectedIcon = Icons.Outlined.Restaurant,
-        route = RecipeScreens.Recipes
+        route = RecipeDestinations.Recipes
     ),
     Favorites(
         label = "Favorites",
         selectedIcon = Icons.Filled.Favorite,
         unselectedIcon = Icons.Outlined.Favorite,
-        route = RecipeScreens.Favorites
+        route = RecipeDestinations.Favorites
     ),
     Category(
         label = "Category",
         selectedIcon = Icons.Filled.GridView,
         unselectedIcon = Icons.Outlined.GridView,
-        route = RecipeScreens.Category
+        route = RecipeDestinations.Category
     )
 }
 

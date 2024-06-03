@@ -19,7 +19,7 @@ fun RecipeBottomBar(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination: NavDestination? = navBackStackEntry?.destination
 
-    val showBottomNav = BottomNavigationItems.entries.map { it.route::class }.any { route ->
+    val showBottomNav = TopLevelDestinations.entries.map { it.route::class }.any { route ->
 
         currentDestination?.hierarchy?.any {
             it.hasRoute(route)
@@ -30,7 +30,7 @@ fun RecipeBottomBar(navController: NavController) {
     AnimatedVisibility(visible = showBottomNav) {
         BottomAppBar {
 
-            BottomNavigationItems.entries.map { bottomNavigationItem ->
+            TopLevelDestinations.entries.map { bottomNavigationItem ->
                 val isSeleccted =
                     currentDestination?.hierarchy?.any { it.hasRoute(bottomNavigationItem.route::class) } == true
 

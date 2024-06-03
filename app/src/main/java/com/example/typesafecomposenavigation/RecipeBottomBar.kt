@@ -4,6 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
@@ -30,18 +31,22 @@ fun RecipeBottomBar(navController: NavController) {
         BottomAppBar {
 
             BottomNavigationItems.entries.map { bottomNavigationItem ->
+                val isSeleccted =
+                    currentDestination?.hierarchy?.any { it.hasRoute(bottomNavigationItem.route::class) } == true
 
                 if (currentDestination != null) {
-                    NavigationBarItem(selected =
-                    currentDestination.hierarchy.any { it.hasRoute(bottomNavigationItem.route::class) },
+                    NavigationBarItem(selected = isSeleccted,
                         onClick = {
                             navController.navigate(bottomNavigationItem.route)
                         },
                         icon = {
                             Icon(
-                                imageVector = bottomNavigationItem.selectedIcon,
+                                imageVector = if (isSeleccted) bottomNavigationItem.selectedIcon else bottomNavigationItem.unselectedIcon,
                                 contentDescription = bottomNavigationItem.label
                             )
+                        }, alwaysShowLabel = isSeleccted,
+                        label = {
+                            Text(bottomNavigationItem.label)
                         })
                 }
             }

@@ -1,8 +1,7 @@
-package com.example.typesafecomposenavigation
+package com.example.typesafecomposenavigation.ui.navigation
 
 import android.os.Build
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.GridView
@@ -13,7 +12,6 @@ import androidx.compose.material.icons.outlined.Restaurant
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavType
 import com.example.typesafecomposenavigation.model.RecipeType
-import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

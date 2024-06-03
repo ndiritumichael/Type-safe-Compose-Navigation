@@ -1,4 +1,4 @@
-package com.example.typesafecomposenavigation
+package com.example.typesafecomposenavigation.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

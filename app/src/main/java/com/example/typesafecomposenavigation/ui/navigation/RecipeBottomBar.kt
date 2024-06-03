@@ -1,4 +1,4 @@
-package com.example.typesafecomposenavigation
+package com.example.typesafecomposenavigation.ui.navigation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.material3.BottomAppBar

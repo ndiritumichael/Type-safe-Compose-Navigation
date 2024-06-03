@@ -15,6 +15,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.example.typesafecomposenavigation.ui.navigation.AppNavigation
+import com.example.typesafecomposenavigation.ui.navigation.RecipeBottomBar
 import com.example.typesafecomposenavigation.ui.theme.TypeSafeComposeNavigationTheme
 
 class MainActivity : ComponentActivity() {

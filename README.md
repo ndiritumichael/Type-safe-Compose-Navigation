@@ -4,7 +4,9 @@ Type Safe Compose Navigation
 ============================
 
 This is a functional Recipe app built in Kotlin and jetpack compose.
+
 It is implemented to act as guide for for implementing the new Type Safe Compose Navigation api.
+
 The app is currently in development as the api is in beta, any updates from the Jetpack team will be updated in due time.
 
 PRs on improvements and bug fixes are welcome.

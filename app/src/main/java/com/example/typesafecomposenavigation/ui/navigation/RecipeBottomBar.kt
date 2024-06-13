@@ -31,20 +31,20 @@ fun RecipeBottomBar(navController: NavController) {
         BottomAppBar {
 
             TopLevelDestinations.entries.map { bottomNavigationItem ->
-                val isSeleccted =
+                val isSelected =
                     currentDestination?.hierarchy?.any { it.hasRoute(bottomNavigationItem.route::class) } == true
 
                 if (currentDestination != null) {
-                    NavigationBarItem(selected = isSeleccted,
+                    NavigationBarItem(selected = isSelected,
                         onClick = {
                             navController.navigate(bottomNavigationItem.route)
                         },
                         icon = {
                             Icon(
-                                imageVector = if (isSeleccted) bottomNavigationItem.selectedIcon else bottomNavigationItem.unselectedIcon,
+                                imageVector = if (isSelected) bottomNavigationItem.selectedIcon else bottomNavigationItem.unselectedIcon,
                                 contentDescription = bottomNavigationItem.label
                             )
-                        }, alwaysShowLabel = isSeleccted,
+                        }, alwaysShowLabel = isSelected,
                         label = {
                             Text(bottomNavigationItem.label)
                         })

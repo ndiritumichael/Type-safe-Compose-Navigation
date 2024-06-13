@@ -3,6 +3,7 @@ package com.example.typesafecomposenavigation.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
@@ -72,6 +73,8 @@ fun AppNavigation(
 
         }
         composable<RecipeDestinations.CategoryRecipes>(
+           // typeMap = mapOf(typeOf<RecipeType>() to NavType.EnumType(RecipeType::class.java))
+            // we are using the custom navtype for demonstration purposes,but it is not required we can use NavType.EnumType
             typeMap = mapOf(typeOf<RecipeType>() to CategoryNavigationType)
         ) { backStackEntry ->
 

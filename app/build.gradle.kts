@@ -74,5 +74,7 @@ dependencies {
     implementation (libs.androidx.material.icons.extended)
     implementation(libs.kotlinx.serialization.json)
 
+    androidTestImplementation (libs.androidx.navigation.testing)
+
 
 }

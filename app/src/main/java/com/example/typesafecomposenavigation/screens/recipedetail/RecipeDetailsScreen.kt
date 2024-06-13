@@ -116,8 +116,8 @@ fun RecipeDetailPage(
             )
 
 
-    }) {
-        Box(modifier = Modifier.padding(it), contentAlignment = Alignment.Center) {
+    }) { paddingValues ->
+        Box(modifier = Modifier.padding(paddingValues), contentAlignment = Alignment.Center) {
             when (val state = recipeState) {
                 is RecipeDetailState.Loading -> {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -128,7 +128,6 @@ fun RecipeDetailPage(
                 }
 
                 is RecipeDetailState.Success -> {
-
                     RecipeDetailsScreen(recipe = state.recipe)
                 }
 

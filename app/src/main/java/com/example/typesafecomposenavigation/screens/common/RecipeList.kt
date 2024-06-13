@@ -27,15 +27,18 @@ import com.example.typesafecomposenavigation.model.RecipeModel
 
 
 @Composable
-fun RecipeListScreen(modifier: Modifier = Modifier,recipes : List<RecipeModel>,onRecipeClicked : (id: Int) -> Unit){
+fun RecipeListScreen(
+    modifier: Modifier = Modifier,
+    recipes: List<RecipeModel>,
+    onRecipeClicked: (id: Int) -> Unit
+) {
 
     LazyColumn(modifier = modifier) {
-        items(recipes,key = {
+        items(recipes, key = {
             it.id
 
-        }){
-                recipe ->
-            RecipeListItem(recipe, onClick = {onRecipeClicked(recipe.id)})
+        }) { recipe ->
+            RecipeListItem(recipe, onClick = { onRecipeClicked(recipe.id) })
 
         }
     }
@@ -44,17 +47,27 @@ fun RecipeListScreen(modifier: Modifier = Modifier,recipes : List<RecipeModel>,o
 
 
 @Composable
-fun RecipeListItem(recipe: RecipeModel,onClick : () -> Unit){
+fun RecipeListItem(recipe: RecipeModel, onClick: () -> Unit) {
 
-    OutlinedCard(onClick = onClick, modifier =  Modifier.padding(horizontal = 8.dp).padding(bottom = 8.dp)) {
+    OutlinedCard(
+        onClick = onClick,
+        modifier = Modifier
+            .padding(horizontal = 8.dp)
+            .padding(bottom = 8.dp)
+    ) {
 
-        Row (modifier = Modifier.padding(4.dp).fillMaxWidth(),verticalAlignment = Alignment.CenterVertically){
+        Row(
+            modifier = Modifier
+                .padding(4.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
 
-            Icon(imageVector = Icons.Filled.Kitchen, contentDescription ="Kitchen" )
+            Icon(imageVector = Icons.Filled.Kitchen, contentDescription = "Kitchen")
 
             Column {
 
-                Text( recipe.name, fontWeight = FontWeight.Bold)
+                Text(recipe.name, fontWeight = FontWeight.Bold)
                 Text(text = buildAnnotatedString {
                     withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) {
                         append("Category")
@@ -81,8 +94,6 @@ fun RecipeListItem(recipe: RecipeModel,onClick : () -> Unit){
         }
 
 
-
-
     }
 
 
@@ -107,7 +118,7 @@ fun PreviewRecipeListitem() {
 @Preview
 @Composable
 fun PreviewRecipeListScreen() {
-    RecipeListScreen(Modifier, RecipeRepository.getAllRecipes()){
+    RecipeListScreen(Modifier, RecipeRepository.getAllRecipes()) {
 
     }
 }

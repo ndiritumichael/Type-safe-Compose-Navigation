@@ -6,11 +6,6 @@ import com.example.typesafecomposenavigation.model.RecipeModel
 import com.example.typesafecomposenavigation.model.RecipeType
 
 
-
-
-
-
-
 internal val lunchRecipes = listOf(
     RecipeModel(
         id = 1,
@@ -112,7 +107,7 @@ internal val lunchRecipes = listOf(
     ),
 
     RecipeModel(
-        id = 4       , name = "Ugali with Liver Stew",
+        id = 4, name = "Ugali with Liver Stew",
         mealType = RecipeType.Lunch,
         difficultyLevel = DifficultyLevel.Intermediate,
         ingredients = listOf(
@@ -138,12 +133,9 @@ internal val lunchRecipes = listOf(
             "Enjoy your Ugali with Liver Stew!"
         ),
         servings = 5
+    ),
+
     )
-    ,
-
-)
-
-
 
 
 internal val breakfastRecipes = listOf(
@@ -253,9 +245,6 @@ internal val breakfastRecipes = listOf(
         servings = 2
     )
 )
-
-
-
 
 
 internal val supperRecipes = listOf(
@@ -381,8 +370,7 @@ internal val supperRecipes = listOf(
         servings = 4
     ),
 
-)
-
+    )
 
 
 internal val snackRecipes = listOf(
@@ -519,6 +507,7 @@ internal val snackRecipes = listOf(
 
 )
 
-val SAMPLERECIPES: List<RecipeModel> = lunchRecipes + breakfastRecipes + snackRecipes + supperRecipes
+val SAMPLERECIPES: List<RecipeModel> =
+    lunchRecipes + breakfastRecipes + snackRecipes + supperRecipes
 
 

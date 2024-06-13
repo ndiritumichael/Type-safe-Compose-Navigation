@@ -21,29 +21,29 @@ Recipe List views
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun AllRecipesScreen(recipes : List<RecipeModel>,onRecipeClicked : (recipeId : Int) -> Unit) {
+fun AllRecipesScreen(recipes: List<RecipeModel>, onRecipeClicked: (recipeId: Int) -> Unit) {
 
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
-    Scaffold (
+    val scrollBehavior =
+        TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
+    Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             TopAppBar(
                 title = { Text(text = "My Recipes") },
                 scrollBehavior = scrollBehavior,
 
-            )
+                )
         }
-    ){ padding ->
+    ) { padding ->
 
-        RecipeListScreen(modifier = Modifier.padding(top = padding.calculateTopPadding()),recipes, onRecipeClicked)
-
-
+        RecipeListScreen(
+            modifier = Modifier.padding(top = padding.calculateTopPadding()),
+            recipes,
+            onRecipeClicked
+        )
 
 
     }
-
-
-
 
 
 }

@@ -3,9 +3,9 @@ package com.example.typesafecomposenavigation.screens.recipedetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.navigation.toRoute
-import com.example.typesafecomposenavigation.ui.navigation.RecipeDestinations
 import com.example.typesafecomposenavigation.data.RecipeRepository
 import com.example.typesafecomposenavigation.model.RecipeModel
+import com.example.typesafecomposenavigation.ui.navigation.RecipeDestinations
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

@@ -27,9 +27,9 @@ import com.example.typesafecomposenavigation.model.RecipeType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CategoryScreen(onCategorySelected: (RecipeType) -> Unit){
+fun CategoryScreen(onCategorySelected: (RecipeType) -> Unit) {
 
-    val categories  = remember {
+    val categories = remember {
         listOf(
             RecipeType.Snack to R.drawable.snack,
             RecipeType.Breakfast to R.drawable.breakfast,
@@ -38,7 +38,7 @@ fun CategoryScreen(onCategorySelected: (RecipeType) -> Unit){
         )
     }
 
-    Scaffold(topBar = { TopAppBar(title = {Text("Explore Categories ")}) }) {
+    Scaffold(topBar = { TopAppBar(title = { Text("Explore Categories ") }) }) {
 
 
         LazyVerticalGrid(
@@ -58,7 +58,7 @@ fun CategoryScreen(onCategorySelected: (RecipeType) -> Unit){
 }
 
 @Composable
-fun CategoryCard(category: Pair<RecipeType, Int>,onCategorySelected: () -> Unit) {
+fun CategoryCard(category: Pair<RecipeType, Int>, onCategorySelected: () -> Unit) {
     val (categoryType, image) = category
     Card(
         onClick = onCategorySelected,
@@ -66,7 +66,7 @@ fun CategoryCard(category: Pair<RecipeType, Int>,onCategorySelected: () -> Unit)
             .padding(8.dp)
             .fillMaxWidth(),
 
-    ) {
+        ) {
         Column(
             modifier = Modifier.padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally

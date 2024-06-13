@@ -14,7 +14,7 @@ enum class RecipeType : Parcelable {
 }
 
 
-enum class DifficultyLevel{
+enum class DifficultyLevel {
     Beginner,
     Intermediate,
     Advanced

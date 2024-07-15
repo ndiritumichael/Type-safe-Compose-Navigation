@@ -20,10 +20,10 @@ class NavigationTest {
 
         val savedStateHandle = SavedStateHandle.Companion.invoke(detail)
 
-        val details: RecipeDestinations.RecipeDetails = savedStateHandle.toRoute()
+        val navDetails: RecipeDestinations.RecipeDetails = savedStateHandle.toRoute()
 
-        println(" the test is complete  the details is $details")
-        assertEquals(details.hashCode(), detail.hashCode())
+
+        assertEquals(navDetails.recipeId, detail.recipeId)
     }
 
 

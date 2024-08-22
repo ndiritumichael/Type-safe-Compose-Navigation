@@ -13,16 +13,16 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import com.example.typesafecomposenavigation.model.RecipeModel
 import com.example.typesafecomposenavigation.screens.common.RecipeListScreen
 
-
 /*
 Recipe List views
  */
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-
-fun AllRecipesScreen(recipes: List<RecipeModel>, onRecipeClicked: (recipeId: Int) -> Unit) {
-
+fun AllRecipesScreen(
+    recipes: List<RecipeModel>,
+    onRecipeClicked: (recipeId: Int) -> Unit,
+) {
     val scrollBehavior =
         TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
     Scaffold(
@@ -31,21 +31,14 @@ fun AllRecipesScreen(recipes: List<RecipeModel>, onRecipeClicked: (recipeId: Int
             TopAppBar(
                 title = { Text(text = "My Recipes") },
                 scrollBehavior = scrollBehavior,
-
-                )
-        }
+            )
+        },
     ) { padding ->
 
         RecipeListScreen(
             modifier = Modifier.padding(top = padding.calculateTopPadding()),
             recipes,
-            onRecipeClicked
+            onRecipeClicked,
         )
-
-
     }
-
-
 }
-
-

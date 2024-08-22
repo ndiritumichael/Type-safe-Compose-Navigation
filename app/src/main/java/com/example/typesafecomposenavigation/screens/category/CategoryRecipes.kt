@@ -21,15 +21,13 @@ import com.example.typesafecomposenavigation.model.RecipeModel
 import com.example.typesafecomposenavigation.model.RecipeType
 import com.example.typesafecomposenavigation.screens.common.RecipeListScreen
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoryRecipesScreen(
     recipeType: RecipeType,
     onBackPressed: () -> Unit,
-    onRecipeClicked: (Int) -> Unit
+    onRecipeClicked: (Int) -> Unit,
 ) {
-
     var recipes by remember {
         mutableStateOf(emptyList<RecipeModel>())
     }
@@ -39,27 +37,19 @@ fun CategoryRecipesScreen(
             IconButton(onClick = onBackPressed) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "go back"
+                    contentDescription = "go back",
                 )
             }
         })
     }) {
-
         RecipeListScreen(
             modifier = Modifier.padding(top = it.calculateTopPadding()),
             recipes = recipes,
-            onRecipeClicked
+            onRecipeClicked,
         )
-
     }
 
-
-
-
-
     LaunchedEffect(recipeType) {
-
         recipes = RecipeRepository.getRecipesByType(recipeType)
-
     }
 }

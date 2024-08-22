@@ -64,7 +64,7 @@ fun AppNavigation(
                 backStackEntry.toRoute<RecipeDestinations.CategoryRecipes>()
 
             CategoryRecipesScreen(
-                category.type,
+                recipeType = category.type,
                 onBackPressed = { navController.navigateUp() },
             ) { recipeId ->
                 navController.navigate(RecipeDestinations.RecipeDetails(recipeId))

@@ -1,7 +1,5 @@
 package com.example.typesafecomposenavigation.ui.navigation
 
-import android.os.Build
-import android.os.Bundle
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.GridView
@@ -10,14 +8,10 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.GridView
 import androidx.compose.material.icons.outlined.Restaurant
 import androidx.compose.ui.graphics.vector.ImageVector
-
 import com.example.typesafecomposenavigation.model.RecipeType
 import kotlinx.serialization.Serializable
 
-
-
 sealed class RecipeDestinations {
-
     @Serializable
     data object Recipes : RecipeDestinations()
 
@@ -25,45 +19,46 @@ sealed class RecipeDestinations {
     data object Favorites : RecipeDestinations()
 
     @Serializable
-    data class RecipeDetails(val recipeId: Int) : RecipeDestinations()
+    data class RecipeDetails(
+        val recipeId: Int,
+    ) : RecipeDestinations()
 
     @Serializable
     data object Category : RecipeDestinations()
 
     @Serializable
-    data class CategoryRecipes(val type: RecipeType) : RecipeDestinations()
-
+    data class CategoryRecipes(
+        val type: RecipeType,
+    ) : RecipeDestinations()
 }
 
 enum class TopLevelDestinations(
     val label: String,
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
-    val route: RecipeDestinations
+    val route: RecipeDestinations,
 ) {
-
-
     Recipes(
         label = "Recipes",
         selectedIcon = Icons.Filled.Restaurant,
         unselectedIcon = Icons.Outlined.Restaurant,
-        route = RecipeDestinations.Recipes
+        route = RecipeDestinations.Recipes,
     ),
     Favorites(
         label = "Favorites",
         selectedIcon = Icons.Filled.Favorite,
         unselectedIcon = Icons.Outlined.Favorite,
-        route = RecipeDestinations.Favorites
+        route = RecipeDestinations.Favorites,
     ),
     Category(
         label = "Category",
         selectedIcon = Icons.Filled.GridView,
         unselectedIcon = Icons.Outlined.GridView,
-        route = RecipeDestinations.Category
-    )
+        route = RecipeDestinations.Category,
+    ),
 }
 //
-//val CategoryNavigationType = object : NavType<RecipeType>(isNullableAllowed = false) {
+// val CategoryNavigationType = object : NavType<RecipeType>(isNullableAllowed = false) {
 //    override fun get(bundle: Bundle, key: String): RecipeType? {
 //        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 //            bundle.getParcelable(key, RecipeType::class.java)
@@ -87,4 +82,4 @@ enum class TopLevelDestinations(
 //    }
 //
 //
-//}
+// }

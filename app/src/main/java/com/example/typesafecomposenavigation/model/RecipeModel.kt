@@ -8,5 +8,5 @@ data class RecipeModel(
     val ingredients: List<Ingredient>,
     val steps: List<String>,
     val servings: Int,
-    val isFavorite: Boolean = false
+    val isFavorite: Boolean = false,
 )

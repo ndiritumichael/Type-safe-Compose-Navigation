@@ -56,7 +56,6 @@ fun AppNavigation(
             }
         }
         composable<RecipeDestinations.CategoryRecipes>(
-            // typeMap = mapOf(typeOf<RecipeType>() to NavType.EnumType(RecipeType::class.java))
             // we are using the custom navtype for demonstration purposes,but it is not required we can use NavType.EnumType
             // typeMap = mapOf(typeOf<RecipeType>() to CategoryNavigationType)
         ) { backStackEntry ->

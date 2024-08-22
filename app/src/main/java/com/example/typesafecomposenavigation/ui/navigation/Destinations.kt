@@ -10,11 +10,10 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.GridView
 import androidx.compose.material.icons.outlined.Restaurant
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavType
+
 import com.example.typesafecomposenavigation.model.RecipeType
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+
 
 
 sealed class RecipeDestinations {
@@ -63,29 +62,29 @@ enum class TopLevelDestinations(
         route = RecipeDestinations.Category
     )
 }
-
-val CategoryNavigationType = object : NavType<RecipeType>(isNullableAllowed = false) {
-    override fun get(bundle: Bundle, key: String): RecipeType? {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            bundle.getParcelable(key, RecipeType::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            bundle.getParcelable(key)
-        }
-
-    }
-
-    override fun parseValue(value: String): RecipeType {
-        return Json.decodeFromString<RecipeType>(value)
-    }
-
-    override fun serializeAsValue(value: RecipeType): String {
-        return Json.encodeToString(value)
-    }
-
-    override fun put(bundle: Bundle, key: String, value: RecipeType) {
-        bundle.putParcelable(key, value)
-    }
-
-
-}
+//
+//val CategoryNavigationType = object : NavType<RecipeType>(isNullableAllowed = false) {
+//    override fun get(bundle: Bundle, key: String): RecipeType? {
+//        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//            bundle.getParcelable(key, RecipeType::class.java)
+//        } else {
+//            @Suppress("DEPRECATION")
+//            bundle.getParcelable(key)
+//        }
+//
+//    }
+//
+//    override fun parseValue(value: String): RecipeType {
+//        return Json.decodeFromString<RecipeType>(value)
+//    }
+//
+//    override fun serializeAsValue(value: RecipeType): String {
+//        return Json.encodeToString(value)
+//    }
+//
+//    override fun put(bundle: Bundle, key: String, value: RecipeType) {
+//        bundle.putParcelable(key, value)
+//    }
+//
+//
+//}

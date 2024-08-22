@@ -2,11 +2,11 @@ package com.example.typesafecomposenavigation.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
-@Parcelize
-enum class RecipeType : Parcelable {
+
+enum class RecipeType {
     Breakfast,
     Lunch,
     Supper,

@@ -304,7 +304,7 @@ Finally we will pass it when creating our graph
 ```
 
 ### Conclusion
-The api is currently in beta and not much is expected to change in the future if you encounter an issue [file it](https://issuetracker.google.com/issues/new?component=409828)
+if you encounter an issue [file it](https://issuetracker.google.com/issues/new?component=409828)
 Happy Coding , Leave a Star ⭐,remember to keep your types safe and your code right.
 
 

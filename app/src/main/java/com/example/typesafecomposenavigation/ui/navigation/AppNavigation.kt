@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navDeepLink
 import androidx.navigation.toRoute
 import com.example.typesafecomposenavigation.data.RecipeRepository
 import com.example.typesafecomposenavigation.screens.category.CategoryRecipesScreen
@@ -12,6 +13,8 @@ import com.example.typesafecomposenavigation.screens.category.CategoryScreen
 import com.example.typesafecomposenavigation.screens.favorites.FavoriteRecipesScreen
 import com.example.typesafecomposenavigation.screens.recipedetail.RecipeDetailPage
 import com.example.typesafecomposenavigation.screens.recipelist.AllRecipesScreen
+
+private const val DEEPLINK_BASE = "http://com.example.typesafecomposenavigation"
 
 @Composable
 fun AppNavigation(
@@ -32,7 +35,11 @@ fun AppNavigation(
             }
         }
 
-        composable<RecipeDestinations.RecipeDetails> { backStackEntry ->
+        composable<RecipeDestinations.RecipeDetails>(
+            deepLinks = listOf(
+                navDeepLink<RecipeDestinations.RecipeDetails>(basePath = "${DEEPLINK_BASE}/recipe")
+            )
+        ) { backStackEntry ->
             val recipeDetails: RecipeDestinations.RecipeDetails = backStackEntry.toRoute()
 
             RecipeDetailPage(recipeDetails.recipeId) {

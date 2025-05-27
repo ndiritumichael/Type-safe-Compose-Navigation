@@ -303,6 +303,32 @@ Finally we will pass it when creating our graph
         }
 ```
 
+###Deeplinks
+To implement Deeplinks and Applinks follow [this guide](https://developer.android.com/training/app-links) from the android developer page.
+In our case we want to handle deeplinks for a recipe id and navigate to the recipe details page.
+First configure the android manifest and declare your intent filters a deeplink for uris and applink for normal links
+```xml
+ <activity
+            android:name=".MainActivity">
+ 
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                    android:host="com.example.typesafecomposenavigation" />
+            </intent-filter>
+
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="example"
+                    android:host="recipe" />
+            </intent-filter>
+        </activity>
+```
+next in the app navigation file where we define our navhost we will declare the links and add them as entries 
 ### Conclusion
 if you encounter an issue [file it](https://issuetracker.google.com/issues/new?component=409828)
 Happy Coding , Leave a Star ⭐,remember to keep your types safe and your code right.

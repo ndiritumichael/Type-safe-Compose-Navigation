@@ -37,7 +37,9 @@ fun AppNavigation(
 
         composable<RecipeDestinations.RecipeDetails>(
             deepLinks = listOf(
-                navDeepLink<RecipeDestinations.RecipeDetails>(basePath = "${DEEPLINK_BASE}/recipe")
+                navDeepLink<RecipeDestinations.RecipeDetails>(basePath = "${DEEPLINK_BASE}/recipe"),
+
+                navDeepLink<RecipeDestinations.RecipeDetails>(basePath = "example://recipe")
             )
         ) { backStackEntry ->
             val recipeDetails: RecipeDestinations.RecipeDetails = backStackEntry.toRoute()

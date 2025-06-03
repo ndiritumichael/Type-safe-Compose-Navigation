@@ -7,7 +7,7 @@ This is a functional Recipe app built in Kotlin and jetpack compose.
 
 It is implemented to act as guide for for implementing the new Type Safe Compose Navigation api.
 
-The app is currently in development as the api is in beta, any updates from the Jetpack team will be updated in due time.
+The app is update as new versions of navigation library come up.
 
 PRs on improvements and bug fixes are welcome.
 
@@ -21,8 +21,8 @@ Android Studio JellyFish or newer
 
 ```toml
 [versions]
-navigationCompose = "2.8.0-beta02"
-kotlin = "1.9.23"
+navigationCompose = "2.9.0"
+kotlin = "2.1.0"
 
 [libraries]
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
@@ -303,8 +303,78 @@ Finally we will pass it when creating our graph
         }
 ```
 
+### Deeplinks
+
+To implement Deeplinks and Applinks follow [this guide](https://developer.android.com/training/app-links) from the android developer page.
+In our case we want to handle deeplinks for a recipe id and navigate to the recipe details page.
+First configure the android manifest and declare your intent filters a deeplink format for uris and applink format for normal links
+```xml
+ <activity
+            android:name=".MainActivity">
+ 
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                    android:host="com.example.typesafecomposenavigation" />
+            </intent-filter>
+
+            <intent-filter android:label="@string/app_name">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="example"
+                    android:host="recipe" />
+            </intent-filter>
+        </activity>
+```
+
+Next in the app navigation file where we define our navhost we will declare the links and add them as entries 
+as list.
+The composable graph builder extension accepts a list of navdeeplinks which should have the same type as the route destination.
+This is what will be used to automatically deserialize the deeplink params into the route arguments
+
+In your NavHost graph, use the `navDeepLink` function within the `deepLinks` parameter of a `composable` destination.
+When you define a `navDeepLink`, you provide a `basePath`. The Navigation library then infers the full URI pattern by inspecting the properties of your `@Serializable` route class:
+Non-optional properties (like `id`) are treated as path parameters (e.g., `/{id}`). The name of the path parameter placeholder `{id}` is derived from the property name `id`.
+Optional properties or those with default values are treated as query parameters (e.g., `?paramName={paramName}`).
+
+ ``` kotlin
+    private const val DEEPLINK_BASE_APP_LINK = "http://com.example.typesafecomposenavigation"
+    private const val DEEPLINK_BASE_CUSTOM_SCHEME = "example://recipe"
+
+    //... in your NavHost
+    composable<RecipeDestinations.RecipeDetails>(
+        deepLinks = listOf(
+       
+            navDeepLink<RecipeDestinations.RecipeDetails>(basePath = "${DEEPLINK_BASE_APP_LINK}/recipe"),
+            // This matches: http://com.example.typesafecomposenavigation/recipe/{id}
+
+            navDeepLink<RecipeDestinations.RecipeDetails>(basePath = DEEPLINK_BASE_CUSTOM_SCHEME)
+            // This matches: example://recipe/{id}
+        )
+    ) { backStackEntry ->
+        val recipeDetails: RecipeDestinations.RecipeDetails = backStackEntry.toRoute()
+        RecipeDetailPage(recipeDetails.recipeId) {
+            navController.navigateUp()
+        }
+    }
+```
+
+**Testing Deep Links:**
+
+You can test your deep links using ADB:
+  ``` shell
+    # For the app link
+    adb shell am start -W -a android.intent.action.VIEW -d "http://com.example.typesafecomposenavigation/recipe/123" com.example.typesafecomposenavigation
+    ```
+
+    # For the custom scheme
+    adb shell am start -W -a android.intent.action.VIEW -d "example://recipe/456" com.example.typesafecomposenavigation
+ ```
 ### Conclusion
-The api is currently in beta and not much is expected to change in the future if you encounter an issue [file it](https://issuetracker.google.com/issues/new?component=409828)
+if you encounter an issue [file it here](https://issuetracker.google.com/issues/new?component=409828)
 Happy Coding , Leave a Star ⭐,remember to keep your types safe and your code right.
 
 

@@ -303,7 +303,8 @@ Finally we will pass it when creating our graph
         }
 ```
 
-###Deeplinks
+### Deeplinks
+
 To implement Deeplinks and Applinks follow [this guide](https://developer.android.com/training/app-links) from the android developer page.
 In our case we want to handle deeplinks for a recipe id and navigate to the recipe details page.
 First configure the android manifest and declare your intent filters a deeplink format for uris and applink format for normal links
@@ -333,14 +334,14 @@ Next in the app navigation file where we define our navhost we will declare the 
 as list.
 The composable graph builder extension accepts a list of navdeeplinks which should have the same type as the route destination.
 This is what will be used to automatically deserialize the deeplink params into the route arguments
-**Define Deep Links and Understand Serialization in Your NavHost:**
+
 In your NavHost graph, use the `navDeepLink` function within the `deepLinks` parameter of a `composable` destination.
 When you define a `navDeepLink`, you provide a `basePath`. The Navigation library then infers the full URI pattern by inspecting the properties of your `@Serializable` route class:
 Non-optional properties (like `id`) are treated as path parameters (e.g., `/{id}`). The name of the path parameter placeholder `{id}` is derived from the property name `id`.
 Optional properties or those with default values are treated as query parameters (e.g., `?paramName={paramName}`).
 
  ``` kotlin
-    private const val DEEPLINK_BASE_APP_LINK = "[http://com.example.typesafecomposenavigation](http://com.example.typesafecomposenavigation)"
+    private const val DEEPLINK_BASE_APP_LINK = "http://com.example.typesafecomposenavigation"
     private const val DEEPLINK_BASE_CUSTOM_SCHEME = "example://recipe"
 
     //... in your NavHost
